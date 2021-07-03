@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ page import="java.util.List" %>
 <%@ page import="entity.Livre" %>
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta charset="utf-8">
     <title>Library</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
 </head>
 <body>
 <%--    <jsp:include page="common/header.jsp" />--%>
     <div class="row row-cols-auto">
-        <jsp:include page="common/sidebar.jsp"/>
+        <jsp:include page="../common/sidebar.jsp"/>
         <section class="col-9 w-75 ">
-            <jsp:include page="common/navbar.jsp"/>
+            <jsp:include page="../common/navbar.jsp"/>
             <h3>Les livres</h3>
             <button class="btn btn-primary p-1 btnright m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Ajouter un livre
@@ -33,9 +33,9 @@
                     <h2>les choses se passent de la meilleure facon</h2>
                     <c:forEach items="${livres}" var="livre">
                         <tr class="text-center">
-                            <td>${livre.libelle}</td>
-                            <td>${livre.cout}</td>
-                            <td>${livre.id}</td>
+                            <td><c:out value="${livre.libelle}"/></td>
+                            <td><c:out value="${livre.cout}"/></td>
+                            <td><c:out value="${livre.id}"/></td>
                             <td>
                                 <button class="btn btn-dark">voir</button>
                                 <button class="btn btn-danger">Supprimer</button>
@@ -84,6 +84,7 @@
         </div>
     </div>
 </div>
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
 </body>
 </html>
