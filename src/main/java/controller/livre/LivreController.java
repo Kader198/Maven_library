@@ -1,4 +1,4 @@
-package controller;
+package controller.livre;
 
 import entity.Livre;
 import jakarta.servlet.*;

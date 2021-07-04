@@ -41,7 +41,7 @@ public class LivreService implements LivreDao {
         Livre livre = em.find(Livre.class,id);
         em.remove(livre);
         em.getTransaction().commit();
-        System.out.println("livre => " + livre.getLibelle() + " supprimé");
+        System.out.println(" livre => " + livre.getLibelle() + " supprimé");
     }
 
     @Override

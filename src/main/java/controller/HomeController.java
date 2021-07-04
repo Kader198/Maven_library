@@ -9,14 +9,14 @@ import service.LivreService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "HomeController", value = "/HomeController")
+@WebServlet("/home")
 public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LivreService livreService = new LivreService();
         List<Livre> Livres = livreService.getAllLivre();
         request.setAttribute("livres",Livres);
-        request.getRequestDispatcher("/index.jsp");
+        request.getRequestDispatcher("views/index.jsp").forward(request,response);
     }
 
     @Override

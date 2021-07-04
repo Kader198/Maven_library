@@ -18,7 +18,7 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) request1;
         HttpServletResponse response = (HttpServletResponse) response1;
         HttpSession session = request.getSession(false);
-        String loginURI = request.getContextPath() + "/SignServlet";
+        String loginURI = request.getContextPath() + "/home";
 
         boolean loggedIn = session != null && session.getAttribute("login") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);

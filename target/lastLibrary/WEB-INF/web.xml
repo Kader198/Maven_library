@@ -4,14 +4,4 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  
-  <servlet>
-    <servlet-name>login</servlet-name>
-    <servlet-class>controller.HomeController</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>login</servlet-name>
-    <url-pattern>/signin</url-pattern>
-  </servlet-mapping>
 </web-app>

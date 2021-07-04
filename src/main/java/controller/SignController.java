@@ -11,17 +11,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/SignServlet")
+@WebServlet("/")
 public class SignController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/views/login.jsp").forward(request,response);
+        request.getRequestDispatcher("/login.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
         String name = request.getParameter("nom");
         String password = request.getParameter("password");
         UserService userService = new UserService();
@@ -31,11 +30,11 @@ public class SignController extends HttpServlet {
             List<Livre> Livres = livreService.getAllLivre();
             request.setAttribute("livres",Livres);
             request.getSession().setAttribute("login",name);
-            response.sendRedirect(request.getContextPath());
+            response.sendRedirect(request.getContextPath()+"/home");
         }else {
-            request.setAttribute("error","invalid credentials");
+            request.setAttribute("error","Informations incorrectes");
 
-            request.getRequestDispatcher("/views/login.jsp").forward(request,response);
+            request.getRequestDispatcher("/login.jsp").forward(request,response);
         }
     }
 }
