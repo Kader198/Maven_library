@@ -1,5 +1,6 @@
 package controller.livre;
 
+
 import entity.Livre;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -9,15 +10,16 @@ import service.LivreService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/livres")
-public class LivreController extends HttpServlet {
+@WebServlet(urlPatterns = "/editLivre")
+public class editlivre extends HttpServlet {
     LivreService livreService = new LivreService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Livre> Livres = livreService.getAllLivre();
-        request.setAttribute("livres",Livres);
-        request.getRequestDispatcher("views/livre/index.jsp").forward(request,response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        Livre livreFound = livreService.getLivre(id);
+        request.setAttribute("livre",livreFound);
+        request.getRequestDispatcher("views/livre/edit.jsp").forward(request,response);
     }
 
     @Override
@@ -34,3 +36,4 @@ public class LivreController extends HttpServlet {
         request.getRequestDispatcher("views/index.jsp").forward(request,response);
     }
 }
+

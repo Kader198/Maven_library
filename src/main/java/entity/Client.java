@@ -7,7 +7,6 @@ import javax.persistence.Id;
 
 @Entity(name = "clients")
 public class Client {
-
     private Integer id;
     private String nom;
     private String prenom;

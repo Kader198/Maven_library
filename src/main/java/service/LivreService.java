@@ -57,6 +57,9 @@ public class LivreService implements LivreDao {
 
     @Override
     public Livre getLivre(int livreId) {
-        return null;
+        em.getTransaction().begin();
+        Livre livre = em.find(Livre.class,livreId);
+        em.getTransaction().commit();
+        return livre;
     }
 }

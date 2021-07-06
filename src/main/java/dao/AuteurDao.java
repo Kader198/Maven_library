@@ -14,5 +14,5 @@ public interface AuteurDao {
 
     Auteur updateAuteur(Auteur auteur);
 
-    Auteur getClient(int auteurID);
+    Auteur getAuteur(int auteurID);
 }

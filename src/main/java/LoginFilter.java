@@ -5,7 +5,7 @@ import java.io.IOException;
 
 
 
-@WebFilter(filterName = "/*")
+@WebFilter(urlPatterns = "*")
 public class LoginFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
@@ -18,7 +18,7 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) request1;
         HttpServletResponse response = (HttpServletResponse) response1;
         HttpSession session = request.getSession(false);
-        String loginURI = request.getContextPath() + "/home";
+        String loginURI = request.getContextPath() + "/";
 
         boolean loggedIn = session != null && session.getAttribute("login") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);

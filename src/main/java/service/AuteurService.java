@@ -30,7 +30,7 @@ public class AuteurService implements AuteurDao {
 
     @Override
     public List<Auteur> getAllAuteur() {
-        String sql = "SELECT S FROM livre S ";
+        String sql = "SELECT S FROM auteur S ";
         Query query = em.createQuery(sql);
         List<Auteur> auteurs = query.getResultList();
         return auteurs;
@@ -56,7 +56,7 @@ public class AuteurService implements AuteurDao {
     }
 
     @Override
-    public Auteur getClient(int auteurID) {
+    public Auteur getAuteur(int auteurID) {
         em.getTransaction().begin();
         Auteur updatedAuteur = em.find(Auteur.class,auteurID);
         return updatedAuteur;

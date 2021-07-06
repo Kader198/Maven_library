@@ -13,6 +13,7 @@ import java.util.List;
 
 @WebServlet("/")
 public class SignController extends HttpServlet {
+    LivreService livreService = new LivreService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,7 +27,6 @@ public class SignController extends HttpServlet {
         UserService userService = new UserService();
         boolean logged = userService.login(name,password);
         if (logged){
-            LivreService livreService = new LivreService();
             List<Livre> Livres = livreService.getAllLivre();
             request.setAttribute("livres",Livres);
             request.getSession().setAttribute("login",name);
