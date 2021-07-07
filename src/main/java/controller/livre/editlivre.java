@@ -25,15 +25,14 @@ public class editlivre extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String libelle = request.getParameter("libelle");
+        int id = Integer.parseInt(request.getParameter("id"));
         double cout = Double.parseDouble(request.getParameter("cout"));
         int auteur = Integer.parseInt(request.getParameter("auteur"));
-        LivreService livreService = new LivreService();
-        Livre livre = new Livre(libelle,cout,auteur);
-        livreService.addLivre(livre);
+        livreService.updateLivre(libelle,cout,auteur,id);
         request.setAttribute("success","le livre a bien été inséré ");
         List<Livre> Livres = livreService.getAllLivre();
         request.setAttribute("livres",Livres);
-        request.getRequestDispatcher("views/index.jsp").forward(request,response);
+        request.getRequestDispatcher("views/livre/index.jsp").forward(request,response);
     }
 }
 

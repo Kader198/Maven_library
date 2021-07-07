@@ -25,10 +25,10 @@ public class editAuteur extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nom = request.getParameter("nom");
+        int id = Integer.parseInt(request.getParameter("id"));
         AuteurService auteurService = new AuteurService();
-        Auteur auteur = new Auteur(nom);
-        auteurService.updateAuteur(auteur);
-        request.setAttribute("success","le auteur a bien été inséré ");
+        auteurService.updateAuteur(id,nom);
+        request.setAttribute("success","l' auteur a bien été modifié ");
         List<Auteur> auteurs = auteurService.getAllAuteur();
         request.setAttribute("auteurs",auteurs);
         request.getRequestDispatcher("views/auteur/index.jsp").forward(request,response);

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ page import="java.util.List" %>
 <%@ page import="entity.Livre" %>
+<%@ page import="entity.Auteur" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,7 +29,7 @@
             }
         %>
         <% Livre livre = (Livre) request.getAttribute("livre"); %>
-        <form action="livres" method="post">
+        <form action="editLivre" method="post">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Editer le livre </h5>
             </div>
@@ -44,7 +45,14 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label>Auteur</label>
-                        <input type="number"  name="auteur" value="<%= livre.getAuteurId() %>" placeholder="L' auteur du livre" class="form-control"/>
+                        <select class="form-control form-select " name="auteur_id">
+                                <% if (request.getAttribute("auteurs") != null) { %>
+                                    <% List<Auteur> auteurs = (List) request.getAttribute("auteurs"); %>
+                                        <% for (Auteur auteur : auteurs) { %>
+                                            <option value="<%= auteur.getId() %>" ><%= auteur.getNom() %></option>
+                                        <% } %>
+                                <% } %>
+                        </select>
                     </div>
                 </div>
             </div>

@@ -2,8 +2,7 @@ package service;
 
 import dao.AuteurDao;
 import entity.Auteur;
-import entity.Client;
-import entity.Livre;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -39,18 +38,17 @@ public class AuteurService implements AuteurDao {
     @Override
     public void deleteAuteur(Integer auteurID) {
         em.getTransaction().begin();
-        Long id = (long) auteurID;
-        Auteur auteur = em.find(Auteur.class,id);
+        Auteur auteur = em.find(Auteur.class,auteurID);
         em.remove(auteur);
         em.getTransaction().commit();
         System.out.println(" auteur  => " + auteur.getNom() + " supprimé");
     }
 
     @Override
-    public Auteur updateAuteur(Auteur auteur) {
+    public Auteur updateAuteur(int id,String nom) {
         em.getTransaction().begin();
-        Auteur updatedAuteur = em.find(Auteur.class,auteur.getId());
-        updatedAuteur.setNom(auteur.getNom());
+        Auteur updatedAuteur = em.find(Auteur.class,id);
+        updatedAuteur.setNom(nom);
         em.getTransaction().commit();
         return updatedAuteur;
     }

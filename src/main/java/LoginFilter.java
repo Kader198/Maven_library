@@ -3,9 +3,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
-
-
-@WebFilter(urlPatterns = "*")
+@WebFilter(urlPatterns = "/*")
 public class LoginFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }

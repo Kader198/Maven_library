@@ -1,29 +1,30 @@
 package entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "livre")
 public class Livre {
+
+    @Id
+    @GeneratedValue
     private int id;
     private String libelle;
     private Double cout;
-    private Integer auteurId;
+
+    @ManyToOne()
+    @JoinColumn(name = "auteur_id")
+    private Auteur auteur;
+
 
     public Livre(){
 
     }
 
-    public Livre(String libelle, Double cout, Integer auteurId) {
+    public Livre(String libelle, Double cout) {
         this.libelle = libelle;
         this.cout = cout;
-        this.auteurId = auteurId;
     }
 
-    @Id
-    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -32,8 +33,6 @@ public class Livre {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "libelle")
     public String getLibelle() {
         return libelle;
     }
@@ -42,8 +41,6 @@ public class Livre {
         this.libelle = libelle;
     }
 
-    @Basic
-    @Column(name = "cout")
     public Double getCout() {
         return cout;
     }
@@ -52,35 +49,11 @@ public class Livre {
         this.cout = cout;
     }
 
-    @Basic
-    @Column(name = "auteur_id")
-    public Integer getAuteurId() {
-        return auteurId;
+    public Auteur getAuteur() {
+        return auteur;
     }
 
-    public void setAuteurId(Integer auteurId) {
-        this.auteurId = auteurId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Livre livre = (Livre) o;
-
-        if (id != livre.id) return false;
-        if (libelle != null ? !libelle.equals(livre.libelle) : livre.libelle != null) return false;
-        if (cout != null ? !cout.equals(livre.cout) : livre.cout != null) return false;
-        return auteurId != null ? auteurId.equals(livre.auteurId) : livre.auteurId == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (libelle != null ? libelle.hashCode() : 0);
-        result = 31 * result + (cout != null ? cout.hashCode() : 0);
-        result = 31 * result + (auteurId != null ? auteurId.hashCode() : 0);
-        return result;
+    public void setAuteur(Auteur auteur) {
+        this.auteur = auteur;
     }
 }

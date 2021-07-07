@@ -38,6 +38,7 @@
                     <div class="form-group col-md-12">
                         <label>Libelle</label>
                         <input type="text" id="nom" value="<%= auteur.getNom() %>" name="libelle" placeholder="Le nom du l'auteur " class="form-control"/>
+                        <input type="hidden" name="id" value="<%= auteur.getId() %>"/>
                     </div>
                 </div>
             </div>
@@ -45,6 +46,17 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary float-right">Sauvegarder</button>
             </div>
+            <select class="form-control form-select " name="auteur_id" multiple aria-label="multiple select example">
+                <% if (auteur.getLivres() != null) { %>
+                    <% for (Livre livre : auteur.getLivres()) { %>
+                            <% if(livre.getAuteur().getId() == auteur.getId()) { %>
+                                <option value="<%= livre.getId() %>" selected><%= livre.getLibelle() %></option>
+                            <% }else { %>
+                                <option value="<%= livre.getId() %>" ><%= livre.getLibelle() %></option>
+                            <% } %>
+                    <% } %>
+                <% } %>
+            </select>
         </form>
 
     </section>

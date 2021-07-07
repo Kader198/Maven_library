@@ -1,35 +1,45 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "auteur")
 public class Auteur {
+    @Id
+    @GeneratedValue
     private int id;
     private String nom;
 
-    @Id
-    @Column(name = "id")
-    public Integer getId() {
-        return id;
-    }
-
-    @Column(name = "nom")
-    public String getNom() {
-        return nom;
-    }
+    @OneToMany(mappedBy = "auteur")
+    private List<Livre> livres = new ArrayList<>();
 
     public Auteur() {
-
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Auteur(String nom) {
         this.nom = nom;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Livre> getLivres() {
+        return livres;
+    }
+
+    public void setLivres(List<Livre> livres) {
+        this.livres = livres;
+    }
 
     public void setNom(String nom) {
         this.nom = nom;

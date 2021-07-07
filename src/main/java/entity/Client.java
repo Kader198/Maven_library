@@ -1,23 +1,19 @@
 package entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "clients")
 public class Client {
+    @Id
+    @GeneratedValue
     private Integer id;
     private String nom;
     private String prenom;
 
-    @Id
     public Integer getId() {
         return id;
     }
 
-    @Basic
-    @Column(name = "nom")
     public String getNom() {
         return nom;
     }
@@ -26,8 +22,6 @@ public class Client {
         this.nom = nom;
     }
 
-    @Basic
-    @Column(name = "prenom")
     public String getPrenom() {
         return prenom;
     }
@@ -39,6 +33,5 @@ public class Client {
     public void setId(Integer id) {
         this.id = id;
     }
-
 
 }

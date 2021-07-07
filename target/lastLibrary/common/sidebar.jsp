@@ -6,31 +6,31 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="#" class="nav-link" aria-current="page">
+            <a href="#" class="nav-link active mt-3" aria-current="page">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
                 Dashboard
             </a>
         </li>
         <li>
-            <a href="livres" class="nav-link text-white">
+            <a href="livres" class="nav-link mt-3 text-white active">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                     Gestion des livres
             </a>
         </li>
         <li>
-            <a href="emprunt" class="nav-link text-white">
+            <a href="emprunt" class="nav-link mt-3 text-white active">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                 Emprunter un livre
             </a>
         </li>
         <li>
-            <a href="clients" class="nav-link text-white">
+            <a href="clients" class="nav-link mt-3 text-white active">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                 Gestion des clients
             </a>
         </li>
         <li>
-            <a href="auteurs" class="nav-link text-white">
+            <a href="auteurs" class="nav-link mt-3 text-white active">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                 Gestion des auteurs
             </a>

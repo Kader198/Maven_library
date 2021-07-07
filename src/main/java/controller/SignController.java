@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/")
+@WebServlet(urlPatterns = "/")
 public class SignController extends HttpServlet {
     LivreService livreService = new LivreService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/login.jsp").forward(request,response);
+        request.getRequestDispatcher("login.jsp").forward(request,response);
     }
 
     @Override

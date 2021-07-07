@@ -40,6 +40,30 @@
     </dependency>
 
     <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.197</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+      <version>1.0.2.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>5.4.21.Final</version>
+    </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>org.hibernate.javax.persistence</groupId>-->
+<!--      <artifactId>hibernate-jpa-2.1-api</artifactId>-->
+<!--    </dependency>-->
+
+    <dependency>
       <groupId>jstl</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>

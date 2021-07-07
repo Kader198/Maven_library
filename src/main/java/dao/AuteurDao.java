@@ -12,7 +12,7 @@ public interface AuteurDao {
 
     void deleteAuteur(Integer auteurID);
 
-    Auteur updateAuteur(Auteur auteur);
+    Auteur updateAuteur(int id,String nom);
 
     Auteur getAuteur(int auteurID);
 }

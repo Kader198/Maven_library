@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ page import="java.util.List" %>
 <%@ page import="entity.Livre" %>
+<%@ page import="entity.Auteur" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,7 +25,7 @@
             if (request.getAttribute("success") != null)
             {
         %>
-        <div class="alert alert-success p-2">
+        <div class="alert alert-success p-2 text-center">
             <%= request.getAttribute("success") %>
         </div>
         <%
@@ -46,7 +47,7 @@
             <tr class="text-center">
                 <td id="lib"><%= l.getLibelle() %></td>
                 <td id="cout"><%= l.getCout() %></td>
-                <td id="auteur" ><%= l.getAuteurId() %></td>
+                <td id="auteur" ><%= l.getAuteur().getNom() %></td>
                 <td>
                     <a href="editLivre?id=<%= l.getId() %>" class="btn btn-dark" >voir</a>
                     <a href="deleteLivre?id=<%= l.getId() %>" class="btn btn-danger">Supprimer</a>
@@ -80,7 +81,14 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Auteur</label>
-                            <input type="number"  name="auteur" placeholder="L' auteur du livre" class="form-control"/>
+                            <select class="form-control form-select " name="auteur_id">
+                                <% if (request.getAttribute("auteurs") != null) { %>
+                                <% List<Auteur> auteurs = (List) request.getAttribute("auteurs"); %>
+                                <% for (Auteur a : auteurs) { %>
+                                    <option value="<%= a.getId() %>"><%= a.getNom() %></option>
+                                <% } %>
+                                <% } %>
+                            </select>
                         </div>
                     </div>
                 </div>

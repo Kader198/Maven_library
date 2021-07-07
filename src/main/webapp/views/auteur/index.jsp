@@ -17,14 +17,14 @@
     <section class="col-9 w-75 ">
         <jsp:include page="../../common/navbar.jsp"/>
         <h3>Les auteurs</h3>
-        <button class="btn btn-primary p-1 btnright m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button class="btn btn-primary p-1 float-end btnright m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Ajouter un auteur
         </button>
         <%
             if (request.getAttribute("success") != null)
             {
         %>
-        <div class="alert alert-success p-2">
+        <div class="alert alert-success p-2 text-center">
             <%= request.getAttribute("success") %>
         </div>
         <%

@@ -37,20 +37,18 @@ public class LivreService implements LivreDao {
     @Override
     public void deleteLivre(Integer livreId) {
         em.getTransaction().begin();
-        Long id = (long) livreId;
-        Livre livre = em.find(Livre.class,id);
+        Livre livre = em.find(Livre.class,livreId);
         em.remove(livre);
         em.getTransaction().commit();
         System.out.println(" livre => " + livre.getLibelle() + " supprimé");
     }
 
     @Override
-    public Livre updateLivre(Livre livre) {
+    public Livre updateLivre(String libelle,double cout,int auteurId,int id) {
         em.getTransaction().begin();
-        Livre updatedLivre = em.find(Livre.class,livre.getId());
-        updatedLivre.setLibelle(livre.getLibelle());
-        updatedLivre.setCout(livre.getCout());
-        updatedLivre.setAuteurId(livre.getAuteurId());
+        Livre updatedLivre = em.find(Livre.class,id);
+        updatedLivre.setLibelle(libelle);
+        updatedLivre.setCout(cout);
         em.getTransaction().commit();
         return updatedLivre;
     }
