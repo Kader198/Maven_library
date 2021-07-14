@@ -1,6 +1,8 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "livre")
 public class Livre {
@@ -11,6 +13,9 @@ public class Livre {
     private String libelle;
     private Double cout;
 
+    @OneToMany(mappedBy = "livre")
+    private List<Emprunt> emprunts = new ArrayList<>();
+
     @ManyToOne()
     @JoinColumn(name = "auteur_id")
     private Auteur auteur;
@@ -18,6 +23,14 @@ public class Livre {
 
     public Livre(){
 
+    }
+
+    public List<Emprunt> getEmprunts() {
+        return emprunts;
+    }
+
+    public void setEmprunts(List<Emprunt> emprunts) {
+        this.emprunts = emprunts;
     }
 
     public Livre(String libelle, Double cout) {

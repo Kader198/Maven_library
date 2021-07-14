@@ -11,7 +11,7 @@ import service.LivreService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/home")
+@WebServlet(urlPatterns = "/home")
 public class HomeController extends HttpServlet {
     LivreService livreService = new LivreService();
     AuteurService auteurService = new AuteurService();

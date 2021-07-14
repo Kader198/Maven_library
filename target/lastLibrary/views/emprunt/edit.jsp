@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ page import="java.util.List" %>
 <%@ page import="entity.Livre" %>
-<%@ page import="entity.Auteur" %>
+<%@ page import="entity.Client" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,17 +28,25 @@
         <%
             }
         %>
-        <% Auteur auteur = (Auteur) request.getAttribute("auteur"); %>
-        <form action="auteurs" method="post">
+        <% Client client = (Client) request.getAttribute("client"); %>
+        <form action="clients" method="post">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Editer le auteur </h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Editer le client </h5>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label>Libelle</label>
-                        <input type="text" id="nom" value="<%= auteur.getNom() %>" name="libelle" placeholder="Le nom du l'auteur " class="form-control"/>
-                        <input type="hidden" name="id" value="<%= auteur.getId() %>"/>
+                        <label>Nom</label>
+                        <input type="text" id="nom" value="<%= client.getNom() %>" name="libelle" placeholder="Le nom du l'client " class="form-control"/>
+                        <input type="hidden" name="id" value="<%= client.getId() %>"/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Prenom</label>
+                        <input type="text" id="nom" value="<%= client.getPrenom() %>" name="libelle" placeholder="Le nom du l'client " class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Age</label>
+                        <input type="number" id="nom" value="<%= client.getAge() %>" name="libelle" placeholder="Le nom du l'client " class="form-control"/>
                     </div>
                 </div>
             </div>
@@ -48,13 +56,13 @@
             </div>
             <select class="form-control form-select " name="auteur_id" multiple aria-label="multiple select example">
                 <% if (auteur.getLivres() != null && request.getAttribute("auteurs") != null) { %>
-                    <% for (Livre livre : auteur.getLivres()) { %>
-                            <% if(livre.getAuteur().getId() == auteur.getId()) { %>
-                                <option value="<%= livre.getId() %>" selected><%= livre.getLibelle() %></option>
-                            <% }else { %>
-                                <option value="<%= livre.getId() %>" ><%= livre.getLibelle() %></option>
-                            <% } %>
-                    <% } %>
+                <% for (Livre livre : auteur.getLivres()) { %>
+                <% if(Client().getId() == auteur.getId()) { %>
+                <option value="<%= livre.getId() %>" selected><%= livre.getLibelle() %></option>
+                <% }else { %>
+                <option value="<%= livre.getId() %>" ><%= livre.getLibelle() %></option>
+                <% } %>
+                <% } %>
                 <% } %>
             </select>
         </form>

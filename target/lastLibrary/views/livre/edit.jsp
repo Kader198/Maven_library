@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="../../js/script.js"></script>
+
 </head>
 <body>
 <%--    <jsp:include page="common/header.jsp" />--%>
@@ -49,9 +50,13 @@
                                 <% if (request.getAttribute("auteurs") != null) { %>
                                     <% List<Auteur> auteurs = (List) request.getAttribute("auteurs"); %>
                                         <% for (Auteur auteur : auteurs) { %>
-                                            <option value="<%= auteur.getId() %>" ><%= auteur.getNom() %></option>
+                                            <% if(auteur.getId() == livre.getAuteur().getId()){ %>
+                                                <option value="<%= auteur.getId() %>" selected><%= auteur.getNom() %></option>
+                                            <% }else { %>
+                                                <option value="<%= auteur.getId() %>"><%= auteur.getNom() %></option>
                                         <% } %>
                                 <% } %>
+                            <% } %>
                         </select>
                     </div>
                 </div>

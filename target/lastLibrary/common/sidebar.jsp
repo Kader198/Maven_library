@@ -18,9 +18,9 @@
             </a>
         </li>
         <li>
-            <a href="emprunt" class="nav-link mt-3 text-white active">
+            <a href="emprunts" class="nav-link mt-3 text-white active">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                Emprunter un livre
+                Gérer les emprunts
             </a>
         </li>
         <li>

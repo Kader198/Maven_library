@@ -1,10 +1,12 @@
 package controller.livre;
 
 
+import entity.Auteur;
 import entity.Livre;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import service.AuteurService;
 import service.LivreService;
 
 import java.io.IOException;
@@ -13,12 +15,14 @@ import java.util.List;
 @WebServlet(urlPatterns = "/editLivre")
 public class editlivre extends HttpServlet {
     LivreService livreService = new LivreService();
-
+    AuteurService auteurService = new AuteurService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Livre livreFound = livreService.getLivre(id);
+        List<Auteur> auteurs = auteurService.getAllAuteur();
         request.setAttribute("livre",livreFound);
+        request.setAttribute("auteurs",auteurs);
         request.getRequestDispatcher("views/livre/edit.jsp").forward(request,response);
     }
 
