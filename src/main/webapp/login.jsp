@@ -77,10 +77,8 @@
     }
   </style>
 
-
-  <!-- Custom styles for this template -->
 </head>
-<body class="text-center">
+<body class="text-center bg-light">
 
 <main class="form-signin">
   <form action="" method="post">
@@ -107,7 +105,7 @@
     <div class="checkbox mb-3">
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2020–2021</p>
+    <p class="mt-5 mb-3 text-muted">&copy;2020-2021</p>
   </form>
 </main>
 

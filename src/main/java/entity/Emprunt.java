@@ -3,10 +3,11 @@ package entity;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "emprunt")
+@Entity(name = "Emprunt")
 public class Emprunt {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "date_emprunt")
@@ -26,6 +27,15 @@ public class Emprunt {
     @Column(name = "prix")
     private Double prix;
 
+    public Emprunt(Date dateEmprunt, Date dateRetour, Double prix) {
+        this.dateEmprunt = dateEmprunt;
+        this.dateRetour = dateRetour;
+        this.prix = prix;
+    }
+
+    public Emprunt() {
+
+    }
 
     public int getId() {
         return id;

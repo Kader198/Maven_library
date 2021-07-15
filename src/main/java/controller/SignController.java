@@ -13,7 +13,8 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/")
 public class SignController extends HttpServlet {
-
+    public UserService userService = new UserService();
+    public LivreService livreService = new LivreService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("login.jsp").forward(request,response);
@@ -23,8 +24,7 @@ public class SignController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("nom");
         String password = request.getParameter("password");
-        UserService userService = new UserService();
-        LivreService livreService = new LivreService();
+
         boolean logged = userService.login(name,password);
         if (logged){
             List<Livre> Livres = livreService.getAllLivre();

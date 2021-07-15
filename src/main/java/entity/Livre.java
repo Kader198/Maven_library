@@ -6,17 +6,16 @@ import java.util.List;
 
 @Entity(name = "livre")
 public class Livre {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String libelle;
     private Double cout;
 
-    @OneToMany(mappedBy = "livre")
+    @OneToMany(targetEntity = Emprunt.class,mappedBy = "livre",cascade = {CascadeType.ALL},orphanRemoval = true)
     private List<Emprunt> emprunts = new ArrayList<>();
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "auteur_id")
     private Auteur auteur;
 

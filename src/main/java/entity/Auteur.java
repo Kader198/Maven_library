@@ -7,8 +7,9 @@ import java.util.List;
 @Entity(name = "auteur")
 public class Auteur {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nom;
 
     @OneToMany(mappedBy = "auteur")
@@ -21,7 +22,7 @@ public class Auteur {
         this.nom = nom;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -29,7 +30,7 @@ public class Auteur {
         return nom;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

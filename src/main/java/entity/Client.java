@@ -7,13 +7,14 @@ import java.util.List;
 @Entity(name = "clients")
 public class Client {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nom;
     private String prenom;
     private int age;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(targetEntity = Emprunt.class,mappedBy = "client",cascade = { CascadeType.ALL },orphanRemoval = false)
     private List<Emprunt> emprunts = new ArrayList<>();
 
     public Client(){

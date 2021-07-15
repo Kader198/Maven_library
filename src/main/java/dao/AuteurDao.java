@@ -6,7 +6,7 @@ import entity.Client;
 import java.util.List;
 
 public interface AuteurDao {
-    void save(Auteur auteur);
+    void addAuteur(Auteur auteur);
 
     List<Auteur> getAllAuteur();
 

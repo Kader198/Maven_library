@@ -13,9 +13,10 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/auteurs")
 public class AuteurController extends HttpServlet {
-    public AuteurService auteurService = new AuteurService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AuteurService auteurService = new AuteurService();
         List<Auteur> auteurs = auteurService.getAllAuteur();
         request.setAttribute("auteurs",auteurs);
         request.getRequestDispatcher("views/auteur/index.jsp").forward(request,response);
@@ -25,7 +26,8 @@ public class AuteurController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nom = request.getParameter("nom");
         Auteur auteur = new Auteur(nom);
-        auteurService.save(auteur);
+        AuteurService auteurService = new AuteurService();
+        auteurService.addAuteur(auteur);
         request.setAttribute("success","l'auteur a bien été inséré ");
         List<Auteur> auteurs = auteurService.getAllAuteur();
         request.setAttribute("auteurs",auteurs);

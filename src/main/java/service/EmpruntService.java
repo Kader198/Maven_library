@@ -23,17 +23,15 @@ public class EmpruntService implements EmpruntDao {
 
     @Override
     public void addEmprunt(Emprunt emprunt) {
-
         em.getTransaction().begin();
-        em.persist(emprunt);
+        em.merge(emprunt);
         em.getTransaction().commit();
-
     }
 
     @Override
     public List<Emprunt> getAllEmprunt() {
 
-        String sql = "SELECT S FROM emprunt S ";
+        String sql = "SELECT S FROM Emprunt S ";
         Query query = em.createQuery(sql);
         List<Emprunt> emprunts = query.getResultList();
         return emprunts;
@@ -66,11 +64,9 @@ public class EmpruntService implements EmpruntDao {
 
     @Override
     public Emprunt getEmprunt(int idEmprunt) {
-
         em.getTransaction().begin();
         Emprunt emprunt = em.find(Emprunt.class,idEmprunt);
         em.getTransaction().commit();
         return emprunt;
-
     }
 }

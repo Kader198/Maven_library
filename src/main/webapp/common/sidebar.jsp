@@ -20,7 +20,7 @@
         <li>
             <a href="emprunts" class="nav-link mt-3 text-white active">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                Gérer les emprunts
+                Gerer les emprunts
             </a>
         </li>
         <li>

@@ -4,6 +4,7 @@ import dao.AuteurDao;
 import entity.Auteur;
 
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,7 +22,7 @@ public class AuteurService implements AuteurDao {
     }
 
     @Override
-    public void save(Auteur auteur) {
+    public void addAuteur(Auteur auteur) {
         em.getTransaction().begin();
         em.persist(auteur);
         em.getTransaction().commit();

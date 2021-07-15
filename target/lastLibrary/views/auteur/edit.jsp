@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label>Libelle</label>
-                        <input type="text" id="nom" value="<%= auteur.getNom() %>" name="libelle" placeholder="Le nom du l'auteur " class="form-control"/>
+                        <input type="text" id="nom" value="<%= auteur.getNom() %>" name="nom" placeholder="Le nom du l'auteur " class="form-control"/>
                         <input type="hidden" name="id" value="<%= auteur.getId() %>"/>
                     </div>
                 </div>

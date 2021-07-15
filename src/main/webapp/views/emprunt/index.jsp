@@ -20,7 +20,7 @@
         <jsp:include page="../../common/navbar.jsp"/>
         <h3>Les emprunts</h3>
         <button class="btn btn-primary p-1 float-end btnright m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Ajouter un auteur
+            Emprunter
         </button>
         <%
             if (request.getAttribute("success") != null)
@@ -32,12 +32,16 @@
         <%
             }
         %>
-        <table class="table w-100">
+        <table class="table" id="livres_table">
             <thead class="table-dark">
             <tr class="text-center">
-                <td>id</td>
-                <td>Nom</td>
-                <td>Actions</td>
+                <th>id</th>
+                <th>Date emprunt</th>
+                <th>Date retour</th>
+                <th>Livre </th>
+                <th>Client</th>
+                <th>Prix</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -48,6 +52,9 @@
                 <td ><%= emprunt.getId() %></td>
                 <td ><%= emprunt.getDateEmprunt() %></td>
                 <td ><%= emprunt.getDateRetour() %></td>
+                <td><%= emprunt.getLivre().getLibelle() %></td>
+                <td><%= emprunt.getClient().getNom() %></td>
+                <td><%= emprunt.getPrix() %></td>
                 <td>
                     <a href="editEmprunt?id=<%= emprunt.getId() %>" class="btn btn-dark" >voir</a>
                     <a href="deleteEmprunt?id=<%= emprunt.getId() %>" class="btn btn-danger">Supprimer</a>
@@ -64,9 +71,9 @@
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="clients" method="post">
+            <form action="emprunts" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Ajouter un auteur </h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Ajouter un emprunt </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -81,11 +88,11 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Prix emprunt</label>
-                            <input type="text"  name="nom"  class="form-control"/>
+                            <input type="number"  name="prix"  class="form-control"/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Client</label>
-                            <select class="form-control form-select " name="auteur_id">
+                            <select class="form-control form-select " name="client_id">
                                 <% if (request.getAttribute("clients") != null) { %>
                                 <% List<Client> clients = (List) request.getAttribute("clients"); %>
                                     <% for (Client client : clients) { %>
@@ -95,10 +102,9 @@
                             </select>
                         </div>
                         <div class="form-group col-md-12">
-                            <label>Age</label>
-                            <label>Client</label>
-                            <select class="form-control form-select " name="auteur_id">
-                                <% if (request.getAttribute("clients") != null) { %>
+                            <label>Livre</label>
+                            <select class="form-control form-select " name="livre_id">
+                                <% if (request.getAttribute("livres") != null) { %>
                                     <% List<Livre> livres = (List) request.getAttribute("livres"); %>
                                     <% for (Livre livre : livres) { %>
                                         <option value="<%= livre.getId() %>" selected><%= livre.getLibelle() %></option>
@@ -117,9 +123,15 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="../js/bootstrap.bundle.js"></script>
+<script >
+    $(document).ready( function () {
+        $('#livres_table').DataTable();
+    } );
+</script>
 </body>
 </html>
 
