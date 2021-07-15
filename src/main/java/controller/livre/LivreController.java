@@ -36,6 +36,8 @@ public class LivreController extends HttpServlet {
         auteur1.getLivres().add(livre);
         request.setAttribute("success","le livre a bien été inséré ");
         List<Livre> Livres = livreService.getAllLivre();
+        List<Auteur> auteurs = auteurService.getAllAuteur();
+        request.setAttribute("auteurs",auteurs);
         request.setAttribute("livres",Livres);
         request.getRequestDispatcher("views/livre/index.jsp").forward(request,response);
     }

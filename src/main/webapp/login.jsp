@@ -62,6 +62,7 @@
 
 
   <style>
+
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -82,6 +83,7 @@
 
 <main class="form-signin">
   <form action="" method="post">
+    <img src="https://www.pngfind.com/pngs/m/11-115643_borrow-library-books-book-flat-design-png-transparent.png" style="width: 102px "/>
     <h1 class="h3 mb-3 fw-normal">Connectez vous</h1>
     <%
        if (request.getAttribute("error") != null)

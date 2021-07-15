@@ -2,6 +2,7 @@ package service;
 
 import dao.ClientDao;
 import entity.Client;
+import entity.Emprunt;
 import entity.Livre;
 
 import javax.persistence.EntityManager;
@@ -57,7 +58,10 @@ public class ClientService implements ClientDao {
 
     @Override
     public Client getClient(int clientID) {
-        return null;
+        em.getTransaction().begin();
+        Client client = em.find(Client.class,clientID);
+        em.getTransaction().commit();
+        return client;
     }
 
 }

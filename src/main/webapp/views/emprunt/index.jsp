@@ -8,6 +8,7 @@
 <head>
     <meta charset="utf-8">
     <title>Library</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="../../js/script.js"></script>
@@ -53,7 +54,7 @@
                 <td ><%= emprunt.getDateEmprunt() %></td>
                 <td ><%= emprunt.getDateRetour() %></td>
                 <td><%= emprunt.getLivre().getLibelle() %></td>
-                <td><%= emprunt.getClient().getNom() %></td>
+            <td><%= emprunt.getClient().getNom() %></td>
                 <td><%= emprunt.getPrix() %></td>
                 <td>
                     <a href="editEmprunt?id=<%= emprunt.getId() %>" class="btn btn-dark" >voir</a>

@@ -84,10 +84,10 @@
                             <label>Auteur</label>
                             <select class="form-control form-select " name="auteur_id">
                                 <% if (request.getAttribute("auteurs") != null) { %>
-                                <% List<Auteur> auteurs = (List) request.getAttribute("auteurs"); %>
-                                <% for (Auteur a : auteurs) { %>
-                                    <option value="<%= a.getId() %>"><%= a.getNom() %></option>
-                                <% } %>
+                                    <% List<Auteur> auteurs = (List) request.getAttribute("auteurs"); %>
+                                    <% for (Auteur a : auteurs) { %>
+                                        <option value="<%= a.getId() %>"><%= a.getNom() %></option>
+                                    <% } %>
                                 <% } %>
                             </select>
                         </div>
