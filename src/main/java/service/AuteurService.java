@@ -13,18 +13,22 @@ import java.util.List;
 
 public class AuteurService implements AuteurDao {
     private static final String PERSISTENCE_UNIT_NAME = "default";
-    private final EntityManagerFactory emf;
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     private final EntityManager em;
 
     public AuteurService() {
-        emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = emf.createEntityManager();
     }
 
+    public void getConnectionIfAlreadyExists(){
+        if (!em.getTransaction().isActive()){
+            em.getTransaction().begin();
+        }
+    }
     @Override
     public void addAuteur(Auteur auteur) {
-        em.getTransaction().begin();
-        em.persist(auteur);
+        getConnectionIfAlreadyExists();
+        em.merge(auteur);
         em.getTransaction().commit();
     }
 
@@ -38,7 +42,7 @@ public class AuteurService implements AuteurDao {
 
     @Override
     public void deleteAuteur(Integer auteurID) {
-        em.getTransaction().begin();
+        getConnectionIfAlreadyExists();
         Auteur auteur = em.find(Auteur.class,auteurID);
         em.remove(auteur);
         em.getTransaction().commit();
@@ -47,7 +51,7 @@ public class AuteurService implements AuteurDao {
 
     @Override
     public Auteur updateAuteur(int id,String nom) {
-        em.getTransaction().begin();
+        getConnectionIfAlreadyExists();
         Auteur updatedAuteur = em.find(Auteur.class,id);
         updatedAuteur.setNom(nom);
         em.getTransaction().commit();
@@ -56,7 +60,7 @@ public class AuteurService implements AuteurDao {
 
     @Override
     public Auteur getAuteur(int auteurID) {
-        em.getTransaction().begin();
+        getConnectionIfAlreadyExists();
         Auteur updatedAuteur = em.find(Auteur.class,auteurID);
         return updatedAuteur;
     }

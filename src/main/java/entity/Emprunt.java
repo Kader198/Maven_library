@@ -11,10 +11,10 @@ public class Emprunt {
     private int id;
 
     @Column(name = "date_emprunt")
-    private Date dateEmprunt;
+    private String dateEmprunt;
 
     @Column(name = "date_retour")
-    private Date dateRetour;
+    private String dateRetour;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
@@ -27,14 +27,38 @@ public class Emprunt {
     @Column(name = "prix")
     private Double prix;
 
-    public Emprunt(Date dateEmprunt, Date dateRetour, Double prix) {
-        this.dateEmprunt = dateEmprunt;
-        this.dateRetour = dateRetour;
-        this.prix = prix;
-    }
+    @Column(name = "qte")
+    private int qte;
+
+    @Column(name = "etat")
+    private int etat;
 
     public Emprunt() {
 
+    }
+
+    public Emprunt(String dateEmprunt, String dateRetour, Double prix,int qte,int etat) {
+        this.dateEmprunt = dateEmprunt;
+        this.dateRetour = dateRetour;
+        this.prix = prix;
+        this.qte = qte;
+        this.etat = etat;
+    }
+
+    public int getQte() {
+        return qte;
+    }
+
+    public void setQte(int qte) {
+        this.qte = qte;
+    }
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
     }
 
     public int getId() {
@@ -48,21 +72,20 @@ public class Emprunt {
     }
 
 
-    public Date getDateEmprunt() {
+    public String getDateEmprunt() {
         return dateEmprunt;
     }
 
-    public void setDateEmprunt(Date dateEmprunt) {
+    public void setDateEmprunt(String dateEmprunt) {
         this.dateEmprunt = dateEmprunt;
     }
 
-    @Basic
-    public Date getDateRetour() {
-        return dateRetour;
+    public void setDateRetour(String dateRetour) {
+        this.dateRetour = dateRetour;
     }
 
-    public void setDateRetour(Date dateRetour) {
-        this.dateRetour = dateRetour;
+    public String getDateRetour() {
+        return dateRetour;
     }
 
     public Double getPrix() {

@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="entity.Livre" %>
 <%@ page import="entity.Client" %>
+<%@ page import="entity.Emprunt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,7 +18,7 @@
   <jsp:include page="../../common/sidebar.jsp"/>
   <section class="col-9 w-75 ">
     <jsp:include page="../../common/navbar.jsp"/>
-    <h3>Les livres</h3>
+    <h3>Modifier le client </h3>
     <%
       if (request.getAttribute("success") != null)
       {
@@ -37,16 +38,16 @@
         <div class="row">
           <div class="form-group col-md-12">
             <label>Nom</label>
-            <input type="text" id="nom" value="<%= client.getNom() %>" name="libelle" placeholder="Le nom du l'client " class="form-control"/>
+            <input type="text" id="nom" value="<%= client.getNom() %>" name="nom"  class="form-control"/>
             <input type="hidden" name="id" value="<%= client.getId() %>"/>
           </div>
           <div class="form-group col-md-12">
             <label>Prenom</label>
-            <input type="text" id="nom" value="<%= client.getPrenom() %>" name="libelle" placeholder="Le nom du l'client " class="form-control"/>
+            <input type="text" id="prenom" value="<%= client.getPrenom() %>" name="prenom"  class="form-control"/>
           </div>
           <div class="form-group col-md-12">
             <label>Age</label>
-            <input type="number" id="nom" value="<%= client.getAge() %>" name="libelle" placeholder="Le nom du l'client " class="form-control"/>
+            <input type="number" id="age" value="<%= client.getAge() %>" name="age"  class="form-control"/>
           </div>
         </div>
       </div>
@@ -55,15 +56,15 @@
         <button type="submit" class="btn btn-primary float-right">Sauvegarder</button>
       </div>
       <select class="form-control form-select " name="auteur_id" multiple aria-label="multiple select example">
-        <% if (auteur.getLivres() != null && request.getAttribute("auteurs") != null) { %>
-        <% for (Livre livre : auteur.getLivres()) { %>
-        <% if(Client().getId() == auteur.getId()) { %>
-        <option value="<%= livre.getId() %>" selected><%= livre.getLibelle() %></option>
-        <% }else { %>
-        <option value="<%= livre.getId() %>" ><%= livre.getLibelle() %></option>
-        <% } %>
-        <% } %>
-        <% } %>
+<%--        <% if (client.getEmprunts() != null && request.getAttribute("clients") != null) { %>--%>
+<%--        <% for (Emprunt emprunt : client.getEmprunts()) { %>--%>
+<%--        <% if(Client().getId() == auteur.getId()) { %>--%>
+<%--        <option value="<%= emprunt.getId() %>" selected><%= emprunt.getLibelle() %></option>--%>
+<%--        <% }else { %>--%>
+<%--        <option value="<%= emprunt.getId() %>" ><%= emprunt.getLibelle() %></option>--%>
+<%--        <% } %>--%>
+<%--        <% } %>--%>
+<%--        <% } %>--%>
       </select>
     </form>
 

@@ -29,11 +29,11 @@ public class LivreController extends HttpServlet {
         String libelle = request.getParameter("libelle");
         double cout = Double.parseDouble(request.getParameter("cout"));
         int auteur = Integer.parseInt(request.getParameter("auteur_id"));
-//        LivreService livreService = new LivreService();
+        LivreService livreService = new LivreService();
         Livre livre = new Livre(libelle,cout);
-//        livreService.addLivre(livre);
         Auteur auteur1 = auteurService.getAuteur(auteur);
-        auteur1.getLivres().add(livre);
+        livre.setAuteur(auteur1);
+        livreService.addLivre(livre);
         request.setAttribute("success","le livre a bien été inséré ");
         List<Livre> Livres = livreService.getAllLivre();
         List<Auteur> auteurs = auteurService.getAllAuteur();

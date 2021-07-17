@@ -31,8 +31,13 @@ public class editlivre extends HttpServlet {
         String libelle = request.getParameter("libelle");
         int id = Integer.parseInt(request.getParameter("id"));
         double cout = Double.parseDouble(request.getParameter("cout"));
-        int auteur = Integer.parseInt(request.getParameter("auteur"));
-        livreService.updateLivre(libelle,cout,auteur,id);
+        int auteur = Integer.parseInt(request.getParameter("auteur_id"));
+        Livre livre = livreService.getLivre(id);
+        Auteur auteur1 = auteurService.getAuteur(auteur);
+        livre.setAuteur(auteur1);
+        livre.setLibelle(libelle);
+        livre.setCout(cout);
+        livreService.addLivre(livre);
         request.setAttribute("success","le livre a bien été inséré ");
         List<Livre> Livres = livreService.getAllLivre();
         request.setAttribute("livres",Livres);

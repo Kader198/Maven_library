@@ -42,6 +42,8 @@
                 <th>Livre </th>
                 <th>Client</th>
                 <th>Prix</th>
+                <th>Quantité</th>
+                <th>Etat</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -56,6 +58,13 @@
                 <td><%= emprunt.getLivre().getLibelle() %></td>
             <td><%= emprunt.getClient().getNom() %></td>
                 <td><%= emprunt.getPrix() %></td>
+                <td><%= emprunt.getQte() %></td>
+                <td><% if(emprunt.getEtat() == 0){%>
+                        <span class="badge bg-secondary p-2 text-black-50">Emprunté</span>
+                    <% }else{ %>
+                        <span class="badge bg-success p-2 text-black-50">Remis</span>
+                    <%}%>
+                </td>
                 <td>
                     <a href="editEmprunt?id=<%= emprunt.getId() %>" class="btn btn-dark" >voir</a>
                     <a href="deleteEmprunt?id=<%= emprunt.getId() %>" class="btn btn-danger">Supprimer</a>
@@ -90,6 +99,10 @@
                         <div class="form-group col-md-12">
                             <label>Prix emprunt</label>
                             <input type="number"  name="prix"  class="form-control"/>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Quentité</label>
+                            <input type="number"  name="qte"  class="form-control"/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Client</label>

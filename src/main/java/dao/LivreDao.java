@@ -11,7 +11,7 @@ public interface LivreDao {
 
     void deleteLivre(Integer livreId);
 
-    Livre updateLivre(String libelle,double cout,int auteur,int id);
+    void updateLivre(Livre livre);
 
     Livre getLivre(int livreId);
 }

@@ -20,9 +20,8 @@
       padding-top: 40px;
       background-image: url("https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1507842217343-583bb7270b66%3Fixid%3DMnwxMjA3fDB8MHxzZWFyY2h8MXx8bGlicmFyeXxlbnwwfHwwfHw%253D%26ixlib%3Drb-1.2.1%26w%3D1000%26q%3D80&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Flibrary&tbnid=QcVxXnBY0MWRBM&vet=12ahUKEwin4bur2tnxAhXKNuwKHSycDN4QMygBegUIARDGAQ..i&docid=oR1VCX9_-h1wdM&w=1000&h=586&q=library%20walpaper%20&ved=2ahUKEwin4bur2tnxAhXKNuwKHSycDN4QMygBegUIARDGAQ");
       padding-bottom: 40px;
-      background-color: #f5f5f5;
+      background-color: gainsboro !important;
     }
-
     .form-signin {
       width: 100%;
       max-width: 330px;
@@ -79,12 +78,14 @@
   </style>
 
 </head>
-<body class="text-center bg-light">
+<body class="text-center">
 
 <main class="form-signin">
   <form action="" method="post">
-    <img src="https://www.pngfind.com/pngs/m/11-115643_borrow-library-books-book-flat-design-png-transparent.png" style="width: 102px "/>
-    <h1 class="h3 mb-3 fw-normal">Connectez vous</h1>
+    <img src="https://www.pngfind.com/pngs/m/11-115643_borrow-library-books-book-flat-design-png-transparent.png" style="width: 102px ; border-radius: 52px"/>
+    <h1 class="h3 mb-3 fw-normal text-primary">
+      BibTek
+    </h1>
     <%
        if (request.getAttribute("error") != null)
        {
@@ -96,7 +97,7 @@
       }
     %>
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="Nom" name="nom">
+      <input type="text" class="form-control" id="floatingInput" placeholder="Nom" name="nom" autofocus>
       <label for="floatingInput">Nom</label>
     </div>
     <div class="form-floating">

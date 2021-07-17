@@ -12,14 +12,18 @@ import java.util.List;
 public class EmpruntService implements EmpruntDao {
 
     private static final String PERSISTENCE_UNIT_NAME = "default";
-    private final EntityManagerFactory emf;
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     private final EntityManager em;
 
     public EmpruntService() {
-        emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = emf.createEntityManager();
     }
 
+    public void getConnectionIfAlreadyExists(){
+        if (!em.getTransaction().isActive()){
+            em.getTransaction().begin();
+        }
+    }
 
     @Override
     public void addEmprunt(Emprunt emprunt) {
@@ -30,7 +34,6 @@ public class EmpruntService implements EmpruntDao {
 
     @Override
     public List<Emprunt> getAllEmprunt() {
-
         String sql = "SELECT S FROM Emprunt S ";
         Query query = em.createQuery(sql);
         List<Emprunt> emprunts = query.getResultList();

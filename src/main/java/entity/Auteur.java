@@ -12,7 +12,7 @@ public class Auteur {
 
     private String nom;
 
-    @OneToMany(mappedBy = "auteur")
+    @OneToMany(mappedBy = "auteur",cascade = {CascadeType.ALL})
     private List<Livre> livres = new ArrayList<>();
 
     public Auteur() {

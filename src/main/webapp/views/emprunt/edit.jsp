@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="entity.Livre" %>
 <%@ page import="entity.Client" %>
+<%@ page import="entity.Emprunt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,25 +29,66 @@
         <%
             }
         %>
-        <% Client client = (Client) request.getAttribute("client"); %>
-        <form action="clients" method="post">
+        <% Emprunt emprunt = (Emprunt) request.getAttribute("emprunt"); %>
+        <form action="editEmprunt" method="post">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Editer le client </h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Editer l' emprunt </h5>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label>Nom</label>
-                        <input type="text" id="nom" value="<%= client.getNom() %>" name="libelle" placeholder="Le nom du l'client " class="form-control"/>
-                        <input type="hidden" name="id" value="<%= client.getId() %>"/>
+                        <label>Date emprunt </label>
+                        <input type="date"  name="dateDebut"  value="<%= emprunt.getDateEmprunt() %>" class="form-control"/>
                     </div>
                     <div class="form-group col-md-12">
-                        <label>Prenom</label>
-                        <input type="text" id="nom" value="<%= client.getPrenom() %>" name="libelle" placeholder="Le nom du l'client " class="form-control"/>
+                        <label>Date retour </label>
+                        <input type="date"  name="dateFin" value="<%= emprunt.getDateRetour() %>>" class="form-control"/>
                     </div>
                     <div class="form-group col-md-12">
-                        <label>Age</label>
-                        <input type="number" id="nom" value="<%= client.getAge() %>" name="libelle" placeholder="Le nom du l'client " class="form-control"/>
+                        <label>Prix emprunt</label>
+                        <input type="number"  name="prix"  value="<%= emprunt.getPrix() %>" class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Quantité</label>
+                        <input type="number"  name="qte"  value="<%= emprunt.getQte() %>" class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Etat</label>
+                        <select class="form-select" name="etat">
+                            <option value="0">Emprunter</option>
+                            <option value="1">Remis</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Client</label>
+                        <select class="form-control form-select " name="client_id">
+                            <% if (request.getAttribute("emprunts") != null) { %>
+                            <% List<Emprunt> emprunts = (List) request.getAttribute("emprunts"); %>
+                            <% for (Emprunt  emprunt1: emprunts) { %>
+                                <% if (emprunt.getClient().getId() == emprunt1.getClient().getId()){ %>
+                                    <option value="<%= emprunt1.getClient().getId() %>" selected><%= emprunt1.getClient().getNom() %></option>
+                                    <% }else{ %>
+                                    <option value="<%= emprunt1.getClient().getId() %>"><%= emprunt1.getClient().getNom() %></option>
+                                <% } %>
+                            <% } %>
+                            <% } %>
+                        </select>
+                        <input type="hidden" name="id"  value="<%= emprunt.getId() %>"/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Livre</label>
+                        <select class="form-control form-select " name="livre_id">
+                            <% if (request.getAttribute("emprunts") != null) { %>
+                            <% List<Emprunt> emprunts = (List) request.getAttribute("emprunts"); %>
+                            <% for (Emprunt  emprunt1: emprunts) { %>
+                                <% if (emprunt.getLivre().getId() == emprunt1.getLivre().getId()){ %>
+                                    <option value="<%= emprunt1.getLivre().getId() %>" selected><%= emprunt1.getLivre().getLibelle() %></option>
+                                    <% }else{ %>
+                                    <option value="<%= emprunt1.getLivre().getId() %>"><%= emprunt1.getLivre().getLibelle() %></option>
+                                <% } %>
+                            <% } %>
+                            <% } %>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -54,17 +96,6 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary float-right">Sauvegarder</button>
             </div>
-            <select class="form-control form-select " name="auteur_id" multiple aria-label="multiple select example">
-                <% if (auteur.getLivres() != null && request.getAttribute("auteurs") != null) { %>
-                <% for (Livre livre : auteur.getLivres()) { %>
-                <% if(Client().getId() == auteur.getId()) { %>
-                <option value="<%= livre.getId() %>" selected><%= livre.getLibelle() %></option>
-                <% }else { %>
-                <option value="<%= livre.getId() %>" ><%= livre.getLibelle() %></option>
-                <% } %>
-                <% } %>
-                <% } %>
-            </select>
         </form>
 
     </section>

@@ -40,22 +40,15 @@ public class EmpruntController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String dateDebut = req.getParameter("dateDebut");
         String dateRt = req.getParameter("dateFin");
-        Date DateRetour = null;
-        Date DateDebut = null;
-        try {
-            DateDebut = new SimpleDateFormat("yyyy-mm-dd").parse(dateDebut);
-            DateRetour = new SimpleDateFormat("yyyy-mm-dd").parse(dateRt);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        // le donnés à insérer dans la base de données
         int client_id = Integer.parseInt(req.getParameter("client_id"));
         int livre_id = Integer.parseInt(req.getParameter("livre_id"));
         double prix = Double.parseDouble(req.getParameter("prix"));
-
+        int qte = Integer.parseInt(req.getParameter("qte"));
+        int etat = 0;
         Livre livre = livreService.getLivre(livre_id);
         Client client = clientService.getClient(client_id);
-        Emprunt emprunt = new Emprunt(DateDebut,DateRetour,prix);
+        Emprunt emprunt = new Emprunt(dateRt,dateDebut,prix,qte,etat);
         emprunt.setClient(client);
         emprunt.setLivre(livre);
         empruntService.addEmprunt(emprunt);

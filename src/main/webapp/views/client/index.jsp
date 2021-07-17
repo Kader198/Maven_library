@@ -18,9 +18,9 @@
   <jsp:include page="../../common/sidebar.jsp"/>
   <section class="col-9 w-75 ">
     <jsp:include page="../../common/navbar.jsp"/>
-    <h3>Les auteurs</h3>
+    <h3>Les clients </h3>
     <button class="btn btn-primary p-1 float-end btnright m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Ajouter un auteur
+      Ajouter un client
     </button>
     <%
       if (request.getAttribute("success") != null)
@@ -37,6 +37,8 @@
       <tr class="text-center">
         <td>id</td>
         <td>Nom</td>
+        <td>Prenom</td>
+        <td>Age </td>
         <td>Actions</td>
       </tr>
       </thead>
@@ -45,8 +47,10 @@
       <% List<Client> clients = (List) request.getAttribute("clients"); %>
       <% for (Client client : clients) { %>
       <tr class="text-center">
-        <td id="lib"><%= client.getId() %></td>
-        <td id="cout"><%= client.getNom() %></td>
+        <td ><%= client.getId() %></td>
+        <td ><%= client.getNom() %></td>
+        <td ><%= client.getPrenom() %></td>
+        <td ><%= client.getAge() %></td>
         <td>
           <a href="editClient?id=<%= client.getId() %>" class="btn btn-dark" >voir</a>
           <a href="deleteClient?id=<%= client.getId() %>" class="btn btn-danger">Supprimer</a>

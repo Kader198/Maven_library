@@ -58,6 +58,7 @@
                                 <% } %>
                             <% } %>
                         </select>
+                        <input type="hidden" name="id" value="<%= livre.getId() %>"/>
                     </div>
                 </div>
             </div>

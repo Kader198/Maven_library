@@ -1,6 +1,7 @@
 package service;
 
 import dao.LivreDao;
+import entity.Auteur;
 import entity.Livre;
 
 import javax.persistence.EntityManager;
@@ -11,17 +12,22 @@ import java.util.List;
 
 public class LivreService implements LivreDao {
     private static final String PERSISTENCE_UNIT_NAME = "default";
-    private final EntityManagerFactory emf;
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     private final EntityManager em;
 
     public LivreService() {
-        emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = emf.createEntityManager();
+    }
+
+    public void getConnectionIfAlreadyExists(){
+        if (!em.getTransaction().isActive()){
+            em.getTransaction().begin();
+        }
     }
 
     @Override
     public void addLivre(Livre livre) {
-        em.getTransaction().begin();
+        getConnectionIfAlreadyExists();
         em.persist(livre);
         em.getTransaction().commit();
     }
@@ -36,7 +42,7 @@ public class LivreService implements LivreDao {
 
     @Override
     public void deleteLivre(Integer livreId) {
-        em.getTransaction().begin();
+        getConnectionIfAlreadyExists();
         Livre livre = em.find(Livre.class,livreId);
         em.remove(livre);
         em.getTransaction().commit();
@@ -44,18 +50,15 @@ public class LivreService implements LivreDao {
     }
 
     @Override
-    public Livre updateLivre(String libelle,double cout,int auteurId,int id) {
-        em.getTransaction().begin();
-        Livre updatedLivre = em.find(Livre.class,id);
-        updatedLivre.setLibelle(libelle);
-        updatedLivre.setCout(cout);
+    public void updateLivre(Livre livre) {
+        getConnectionIfAlreadyExists();
+        em.merge(livre);
         em.getTransaction().commit();
-        return updatedLivre;
     }
 
     @Override
     public Livre getLivre(int livreId) {
-        em.getTransaction().begin();
+        getConnectionIfAlreadyExists();
         Livre livre = em.find(Livre.class,livreId);
         em.getTransaction().commit();
         return livre;

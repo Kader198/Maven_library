@@ -13,17 +13,22 @@ import java.util.List;
 
 public class ClientService implements ClientDao {
     private static final String PERSISTENCE_UNIT_NAME = "default";
-    private final EntityManagerFactory emf;
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     private final EntityManager em;
 
     public ClientService() {
-        emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = emf.createEntityManager();
+    }
+
+    public void getConnectionIfAlreadyExists(){
+        if (!em.getTransaction().isActive()){
+            em.getTransaction().begin();
+        }
     }
 
     @Override
     public void save(Client client) {
-        em.getTransaction().begin();
+        getConnectionIfAlreadyExists();
         em.persist(client);
         em.getTransaction().commit();
     }
@@ -38,27 +43,27 @@ public class ClientService implements ClientDao {
 
     @Override
     public void deleteClient(Integer clientID) {
-        em.getTransaction().begin();
-        Long id = (long) clientID;
-        Client client = em.find(Client.class,id);
+        getConnectionIfAlreadyExists();
+        Client client = em.find(Client.class,clientID);
         em.remove(client);
         em.getTransaction().commit();
         System.out.println(" Client => " + client.getNom() + " supprimé");
     }
 
     @Override
-    public Client updateClient(Client client) {
-        em.getTransaction().begin();
-        Client updateClient = em.find(Client.class,client.getId());
-        updateClient.setNom(client.getNom());
-        updateClient.setPrenom(client.getPrenom());
+    public Client updateClient(int id ,String nom,String prenom,int age) {
+        getConnectionIfAlreadyExists();
+        Client updateClient = em.find(Client.class,id);
+        updateClient.setNom(nom);
+        updateClient.setPrenom(prenom);
+        updateClient.setAge(age);
         em.getTransaction().commit();
         return updateClient;
     }
 
     @Override
     public Client getClient(int clientID) {
-        em.getTransaction().begin();
+        getConnectionIfAlreadyExists();
         Client client = em.find(Client.class,clientID);
         em.getTransaction().commit();
         return client;
