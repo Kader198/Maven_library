@@ -35,7 +35,6 @@
         <table class="table" id="livres_table">
             <thead class="table-dark">
             <tr class="text-center">
-                <td>id</td>
                 <td>Nom</td>
                 <td>Actions</td>
             </tr>
@@ -45,11 +44,10 @@
             <% List<Auteur> auteurs = (List) request.getAttribute("auteurs"); %>
             <% for (Auteur auteur : auteurs) { %>
             <tr class="text-center">
-                <td id="lib"><%= auteur.getId() %></td>
                 <td id="cout"><%= auteur.getNom() %></td>
                 <td>
-                    <a href="editAuteur?id=<%= auteur.getId() %>" class="btn btn-dark" >voir</a>
-                    <a href="deleteAuteur?id=<%= auteur.getId() %>" class="btn btn-danger">Supprimer</a>
+                    <a href="editAuteur?id=<%= auteur.getId() %>" class="btn btn-dark" ><i class="fas fa-edit"></i></a>
+                    <a href="deleteAuteur?id=<%= auteur.getId() %>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
             <% } %>
@@ -72,7 +70,7 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label>Nom</label>
-                            <input type="text"  name="nom" placeholder="le nom de l'auteur " class="form-control"/>
+                            <input type="text" required name="nom" placeholder="le nom de l'auteur " class="form-control"/>
                         </div>
                     </div>
                 </div>

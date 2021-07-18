@@ -36,7 +36,6 @@
     <table class="table w-100" id="livres_table">
       <thead class="table-dark">
       <tr class="text-center">
-        <td>id</td>
         <td>Nom</td>
         <td>Prenom</td>
         <td>Age </td>
@@ -48,13 +47,12 @@
       <% List<Client> clients = (List) request.getAttribute("clients"); %>
       <% for (Client client : clients) { %>
       <tr class="text-center">
-        <td ><%= client.getId() %></td>
         <td ><%= client.getNom() %></td>
         <td ><%= client.getPrenom() %></td>
         <td ><%= client.getAge() %></td>
         <td>
-          <a href="editClient?id=<%= client.getId() %>" class="btn btn-dark" ><i class="fas fa-eye"></i></a>
-          <a href="deleteClient?id=<%= client.getId() %>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+          <a href="editClient?id=<%= client.getId() %>" class="btn btn-dark" ><i class="fas fa-edit"></i></a>
+          <a href="deleteClient?id=<%= client.getId() %>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
         </td>
       </tr>
       <% } %>

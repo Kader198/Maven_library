@@ -6,32 +6,37 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="#" class="nav-link link-primary bg-light rounded-2 fw-bolder mt-3 a" aria-current="page">
+            <a href="home" class="nav-link link-primary bg-light rounded-2 fw-bolder mt-3 a" aria-current="page">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+                <i class="fa fa-home"></i>
                 Dashboard
             </a>
         </li>
         <li>
             <a href="livres" class="nav-link link-primary bg-light rounded-2 mt-3  text-primary fw-bolder">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                    <i class="fa fa-book"></i>
                     Gestion des livres
             </a>
         </li>
         <li>
             <a href="emprunts" class="nav-link link-primary bg-light rounded-2 mt-3  text-primary fw-bolder">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                <i class="fa  fa-book-open "></i>
                 Gerer les emprunts
             </a>
         </li>
         <li>
             <a href="clients" class="nav-link link-primary bg-light rounded-2 mt-3  text-primary fw-bolder">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                <i class="fa fa-users  "></i>
                 Gestion des clients
             </a>
         </li>
         <li>
             <a href="auteurs" class="nav-link link-primary bg-light rounded-2 mt-3  text-primary fw-bolder">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                <i class="fa fa-users"></i>
                 Gestion des auteurs
             </a>
         </li>

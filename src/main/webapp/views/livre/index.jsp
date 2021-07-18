@@ -51,7 +51,7 @@
                 <td id="cout"><%= l.getCout() %></td>
                 <td id="auteur" ><%= l.getAuteur().getNom() %></td>
                 <td>
-                    <a href="editLivre?id=<%= l.getId() %>" class="btn btn-dark" ><i class="fas fa-eye"></i></a>
+                    <a href="editLivre?id=<%= l.getId() %>" class="btn btn-dark" ><i class="fas fa-edit"></i></a>
                     <a href="deleteLivre?id=<%= l.getId() %>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
@@ -75,15 +75,15 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label>Libelle</label>
-                            <input type="text" id="libelle" name="libelle" placeholder="Le libelle du livre" class="form-control"/>
+                            <input type="text" id="libelle" name="libelle" placeholder="Le libelle du livre" class="form-control" required/>
                         </div>
                         <div class="form-group col-md-12">
                             <label> Cout</label>
-                            <input type="number"   name="cout" placeholder="Le cout du livre" class="form-control"/>
+                            <input type="number"   name="cout" placeholder="Le cout du livre" class="form-control" required/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Auteur</label>
-                            <select class="form-control form-select " name="auteur_id">
+                            <select class="form-control form-select " name="auteur_id" required>
                                 <% if (request.getAttribute("auteurs") != null) { %>
                                     <% List<Auteur> auteurs = (List) request.getAttribute("auteurs"); %>
                                     <% for (Auteur a : auteurs) { %>

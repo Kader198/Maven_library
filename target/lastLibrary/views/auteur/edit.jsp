@@ -43,7 +43,6 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary float-right">Sauvegarder</button>
             </div>
             <select class="form-control form-select " name="auteur_id" multiple aria-label="multiple select example">

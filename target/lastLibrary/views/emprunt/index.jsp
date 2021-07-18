@@ -37,7 +37,6 @@
         <table class="table" id="livres_table">
             <thead class="table-dark">
             <tr class="text-center">
-                <th>id</th>
                 <th>Date emprunt</th>
                 <th>Date retour</th>
                 <th>Livre </th>
@@ -53,7 +52,6 @@
             <% List<Emprunt> emprunts = (List) request.getAttribute("emprunts"); %>
             <% for (Emprunt emprunt : emprunts) { %>
             <tr class="text-center">
-                <td ><%= emprunt.getId() %></td>
                 <td ><%= emprunt.getDateEmprunt() %></td>
                 <td ><%= emprunt.getDateRetour() %></td>
                 <td><%= emprunt.getLivre().getLibelle() %></td>
@@ -67,8 +65,8 @@
                     <%}%>
                 </td>
                 <td>
-                    <a href="editEmprunt?id=<%= emprunt.getId() %>" class="btn btn-dark" ><i class="fas fa-eye"></i></a>
-                    <a href="deleteEmprunt?id=<%= emprunt.getId() %>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                    <a href="editEmprunt?id=<%= emprunt.getId() %>" class="btn btn-dark" ><i class="fas fa-edit"></i></a>
+                    <a href="deleteEmprunt?id=<%= emprunt.getId() %>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
             <% } %>
@@ -91,23 +89,23 @@
                     <div class="row">
                         <div class="form-group col-md-12 dateEm">
                             <label>Date emprunt </label>
-                            <input type="date"  name="dateDebut" id="dateDebut" class="form-control"/>
+                            <input type="date"  name="dateDebut" id="dateDebut" onchange="ControlDate()" class="form-control"/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Date retour </label>
-                            <input type="date"  name="dateFin"  class="form-control"/>
+                            <input type="date"  name="dateFin"  id="dateFin" class="form-control"/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Prix emprunt</label>
-                            <input type="number"  name="prix"  class="form-control"/>
+                            <input type="number"  name="prix"  required class="form-control"/>
                         </div>
                         <div class="form-group col-md-12">
-                            <label>Quentité</label>
-                            <input type="number"  name="qte"  class="form-control"/>
+                            <label>Quantité</label>
+                            <input type="number"  name="qte"  required class="form-control"/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Client</label>
-                            <select class="form-control form-select " name="client_id">
+                            <select required class="form-control form-select " name="client_id">
                                 <% if (request.getAttribute("clients") != null) { %>
                                 <% List<Client> clients = (List) request.getAttribute("clients"); %>
                                     <% for (Client client : clients) { %>
@@ -118,7 +116,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Livre</label>
-                            <select class="form-control form-select " name="livre_id">
+                            <select required class="form-control form-select " name="livre_id">
                                 <% if (request.getAttribute("livres") != null) { %>
                                     <% List<Livre> livres = (List) request.getAttribute("livres"); %>
                                     <% for (Livre livre : livres) { %>
@@ -130,7 +128,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary float-right">Sauvegarder</button>
                 </div>
             </form>
@@ -143,7 +140,13 @@
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="../js/bootstrap.bundle.js"></script>
 <script >
-
+    function ControlDate(){
+        dated = $("#dateDebut").val();
+        datef = $("#dateFin").val();
+        if (Date.parse(dated) < Date.parse(datef)){
+            $.alert("La date retour doit etre inferieur à la date d'emprunt ");
+        }
+    }
     $(document).ready( function () {
 
         setTimeout(function () {
