@@ -22,7 +22,7 @@ public class HomeController extends HttpServlet {
         List<Auteur> auteurs = auteurService.getAllAuteur();
         request.setAttribute("livres",Livres);
         request.setAttribute("auteurs",auteurs);
-        request.getRequestDispatcher("views/livre/index.jsp").forward(request,response);
+        request.getRequestDispatcher("views/dashboard.jsp").forward(request,response);
     }
 
     @Override

@@ -30,7 +30,7 @@
       }
     %>
     <% Client client = (Client) request.getAttribute("client"); %>
-    <form action="clients" method="post">
+    <form action="editClient" method="post">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Editer le client </h5>
       </div>

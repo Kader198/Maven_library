@@ -18,7 +18,7 @@
     <jsp:include page="../../common/sidebar.jsp"/>
     <section class="col-9 w-75 ">
         <jsp:include page="../../common/navbar.jsp"/>
-        <h3>Les livres</h3>
+        <h3>Modifier l'emprunt </h3>
         <%
             if (request.getAttribute("success") != null)
             {
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label>Date retour </label>
-                        <input type="date"  name="dateFin" value="<%= emprunt.getDateRetour() %>>" class="form-control"/>
+                        <input type="date"  name="dateFin" value="<%= emprunt.getDateRetour() %>" class="form-control"/>
                     </div>
                     <div class="form-group col-md-12">
                         <label>Prix emprunt</label>
@@ -64,11 +64,12 @@
                         <select class="form-control form-select " name="client_id">
                             <% if (request.getAttribute("emprunts") != null) { %>
                             <% List<Emprunt> emprunts = (List) request.getAttribute("emprunts"); %>
-                            <% for (Emprunt  emprunt1: emprunts) { %>
-                                <% if (emprunt.getClient().getId() == emprunt1.getClient().getId()){ %>
-                                    <option value="<%= emprunt1.getClient().getId() %>" selected><%= emprunt1.getClient().getNom() %></option>
+                            <% List<Client> clients = (List) request.getAttribute("clients"); %>
+                            <% for (Client  client: clients) { %>
+                                <% if (emprunt.getClient().getId() == emprunt.getClient().getId()){ %>
+                                    <option value="<%= client.getId() %>" selected><%= client.getNom() %></option>
                                     <% }else{ %>
-                                    <option value="<%= emprunt1.getClient().getId() %>"><%= emprunt1.getClient().getNom() %></option>
+                                    <option value="<%= client.getId() %>"><%= client.getNom() %></option>
                                 <% } %>
                             <% } %>
                             <% } %>
@@ -79,12 +80,12 @@
                         <label>Livre</label>
                         <select class="form-control form-select " name="livre_id">
                             <% if (request.getAttribute("emprunts") != null) { %>
-                            <% List<Emprunt> emprunts = (List) request.getAttribute("emprunts"); %>
-                            <% for (Emprunt  emprunt1: emprunts) { %>
-                                <% if (emprunt.getLivre().getId() == emprunt1.getLivre().getId()){ %>
-                                    <option value="<%= emprunt1.getLivre().getId() %>" selected><%= emprunt1.getLivre().getLibelle() %></option>
+                            <% List<Livre> livres = (List) request.getAttribute("livres"); %>
+                            <% for (Livre  livre: livres) { %>
+                                <% if (emprunt.getLivre().getId() == livre.getId()){ %>
+                                    <option value="<%= livre.getId() %>" selected><%= livre.getLibelle() %></option>
                                     <% }else{ %>
-                                    <option value="<%= emprunt1.getLivre().getId() %>"><%= emprunt1.getLivre().getLibelle() %></option>
+                                    <option value="<%= livre.getId() %>"><%= livre.getLibelle() %></option>
                                 <% } %>
                             <% } %>
                             <% } %>

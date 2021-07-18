@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title>Library</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
@@ -25,7 +26,7 @@
             if (request.getAttribute("success") != null)
             {
         %>
-        <div class="alert alert-success p-2 text-center">
+    <div class="alert alert-success p-2 text-center alerte">
             <%= request.getAttribute("success") %>
         </div>
         <%
@@ -90,6 +91,9 @@
 <script src="../js/bootstrap.bundle.js"></script>
 <script >
     $(document).ready( function () {
+        setTimeout(function () {
+            $('.alerte').hide();
+        },2000);
         $('#livres_table').DataTable();
     } );
 </script>

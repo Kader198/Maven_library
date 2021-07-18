@@ -4,6 +4,8 @@ import entity.Emprunt;
 import entity.Livre;
 import service.*;
 
+import java.util.Date;
+
 public class main {
     public static void main(String[] args) {
 //        LivreService livreService = new LivreService();
@@ -18,10 +20,9 @@ public class main {
 //        emprunt.setLivre(livre1);
 //        empruntService.addEmprunt(emprunt);
 //        System.out.println("Emprunt ajouté");
-        AuteurService auteurService =new AuteurService();
-//        boolean log =userService.login("admin","admin");
-        Auteur a = new Auteur("Ahmed");
-        auteurService.addAuteur(a);
-        System.out.println("auteur "+a.getNom());
+        Date d = new Date();
+        EmpruntService e = new EmpruntService();
+
+        System.out.println("la date "+d.getYear()+"-"+(d.getMonth()+1)+"-"+ d.getDate());
     }
 }

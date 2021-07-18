@@ -28,7 +28,6 @@ public class SignController extends HttpServlet {
         boolean logged = userService.login(name,password);
         if (logged){
             List<Livre> Livres = livreService.getAllLivre();
-            request.setAttribute("livres",Livres);
             request.getSession().setAttribute("login",name);
             response.sendRedirect(request.getContextPath()+"/home");
         }else {

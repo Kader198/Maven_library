@@ -31,7 +31,12 @@ public class editController extends HttpServlet {
         String prenom = req.getParameter("prenom");
         int age = Integer.parseInt(req.getParameter("age"));
         ClientService clientService = new ClientService();
-        clientService.updateClient(id,nom,prenom,age);
+        Client client = clientService.getClient(id);
+        client.setNom(nom);
+        client.setPrenom(prenom);
+        client.setAge(age);
+        clientService.save(client);
+        req.removeAttribute("success");
         req.setAttribute("success","le client a bien été modifié ");
         List<Client> clients = clientService.getAllClient();
         req.setAttribute("clients",clients);

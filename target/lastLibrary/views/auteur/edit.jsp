@@ -17,7 +17,7 @@
     <jsp:include page="../../common/sidebar.jsp"/>
     <section class="col-9 w-75 ">
         <jsp:include page="../../common/navbar.jsp"/>
-        <h3>Les livres</h3>
+        <h3>Les auteurs</h3>
         <%
             if (request.getAttribute("success") != null)
             {
@@ -29,7 +29,7 @@
             }
         %>
         <% Auteur auteur = (Auteur) request.getAttribute("auteur"); %>
-        <form action="auteurs" method="post">
+        <form action="editAuteur" method="post">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Editer le auteur </h5>
             </div>

@@ -28,6 +28,7 @@ public class editAuteur extends HttpServlet{
         int id = Integer.parseInt(request.getParameter("id"));
         AuteurService auteurService = new AuteurService();
         auteurService.updateAuteur(id,nom);
+        request.removeAttribute("success");
         request.setAttribute("success","l' auteur a bien été modifié ");
         List<Auteur> auteurs = auteurService.getAllAuteur();
         request.setAttribute("auteurs",auteurs);

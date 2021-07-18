@@ -96,30 +96,6 @@ public class Emprunt {
         this.prix = prix;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Emprunt emprunt = (Emprunt) o;
-
-        if (id != emprunt.id) return false;
-        if (dateEmprunt != null ? !dateEmprunt.equals(emprunt.dateEmprunt) : emprunt.dateEmprunt != null) return false;
-        if (dateRetour != null ? !dateRetour.equals(emprunt.dateRetour) : emprunt.dateRetour != null) return false;
-        if (prix != null ? !prix.equals(emprunt.prix) : emprunt.prix != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (dateEmprunt != null ? dateEmprunt.hashCode() : 0);
-        result = 31 * result + (dateRetour != null ? dateRetour.hashCode() : 0);
-        result = 31 * result + (prix != null ? prix.hashCode() : 0);
-        return result;
-    }
-
     public Client getClient() {
         return client;
     }

@@ -27,7 +27,7 @@ public class EmpruntService implements EmpruntDao {
 
     @Override
     public void addEmprunt(Emprunt emprunt) {
-        em.getTransaction().begin();
+        getConnectionIfAlreadyExists();
         em.merge(emprunt);
         em.getTransaction().commit();
     }
@@ -38,18 +38,15 @@ public class EmpruntService implements EmpruntDao {
         Query query = em.createQuery(sql);
         List<Emprunt> emprunts = query.getResultList();
         return emprunts;
-
     }
 
     @Override
     public void deleteEmprunt(int idEmprunt) {
-
-        em.getTransaction().begin();
+        getConnectionIfAlreadyExists();
         Emprunt emprunt = em.find(Emprunt.class,idEmprunt);
         em.remove(emprunt);
         em.getTransaction().commit();
         System.out.println(" emprunt => " + emprunt.getId() + " supprimé");
-
     }
 
     @Override

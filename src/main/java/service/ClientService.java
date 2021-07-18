@@ -29,7 +29,7 @@ public class ClientService implements ClientDao {
     @Override
     public void save(Client client) {
         getConnectionIfAlreadyExists();
-        em.persist(client);
+        em.merge(client);
         em.getTransaction().commit();
     }
 
@@ -51,12 +51,12 @@ public class ClientService implements ClientDao {
     }
 
     @Override
-    public Client updateClient(int id ,String nom,String prenom,int age) {
+    public Client updateClient(Client client,int id) {
         getConnectionIfAlreadyExists();
         Client updateClient = em.find(Client.class,id);
-        updateClient.setNom(nom);
-        updateClient.setPrenom(prenom);
-        updateClient.setAge(age);
+        updateClient.setNom(client.getNom());
+        updateClient.setPrenom(client.getPrenom());
+        updateClient.setAge(client.getAge());
         em.getTransaction().commit();
         return updateClient;
     }

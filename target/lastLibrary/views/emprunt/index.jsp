@@ -9,6 +9,7 @@
     <meta charset="utf-8">
     <title>Library</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="../../js/script.js"></script>
@@ -20,14 +21,14 @@
     <section class="col-9 w-75 ">
         <jsp:include page="../../common/navbar.jsp"/>
         <h3>Les emprunts</h3>
-        <button class="btn btn-primary p-1 float-end btnright m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button class="btn btn-primary p-1 float-end btnright m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="changeDate()">
             Emprunter
         </button>
         <%
             if (request.getAttribute("success") != null)
             {
         %>
-        <div class="alert alert-success p-2 text-center">
+        <div class="alert alert-success p-2 text-center alerte">
             <%= request.getAttribute("success") %>
         </div>
         <%
@@ -60,14 +61,14 @@
                 <td><%= emprunt.getPrix() %></td>
                 <td><%= emprunt.getQte() %></td>
                 <td><% if(emprunt.getEtat() == 0){%>
-                        <span class="badge bg-secondary p-2 text-black-50">Emprunté</span>
+                        <span class="badge bg-light p-2 text-black-50">Emprunté</span>
                     <% }else{ %>
                         <span class="badge bg-success p-2 text-black-50">Remis</span>
                     <%}%>
                 </td>
                 <td>
-                    <a href="editEmprunt?id=<%= emprunt.getId() %>" class="btn btn-dark" >voir</a>
-                    <a href="deleteEmprunt?id=<%= emprunt.getId() %>" class="btn btn-danger">Supprimer</a>
+                    <a href="editEmprunt?id=<%= emprunt.getId() %>" class="btn btn-dark" ><i class="fas fa-eye"></i></a>
+                    <a href="deleteEmprunt?id=<%= emprunt.getId() %>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
             <% } %>
@@ -88,9 +89,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12 dateEm">
                             <label>Date emprunt </label>
-                            <input type="date"  name="dateDebut"  class="form-control"/>
+                            <input type="date"  name="dateDebut" id="dateDebut" class="form-control"/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Date retour </label>
@@ -142,7 +143,12 @@
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="../js/bootstrap.bundle.js"></script>
 <script >
+
     $(document).ready( function () {
+
+        setTimeout(function () {
+            $('.alerte').hide();
+        },2000);
         $('#livres_table').DataTable();
     } );
 </script>

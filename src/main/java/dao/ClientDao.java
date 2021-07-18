@@ -11,7 +11,7 @@ public interface ClientDao {
 
     void deleteClient(Integer clientID);
 
-    Client updateClient(int id , String nom ,String prenom,int age);
+    Client updateClient(Client client,int id );
 
     Client getClient(int clientID);
 }

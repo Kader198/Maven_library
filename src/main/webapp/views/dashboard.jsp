@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ page import="java.util.List" %>
 <%@ page import="entity.Livre" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Tkhadjetouransitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta charset="utf-8">
     <title>Library</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
@@ -17,49 +18,31 @@
         <jsp:include page="../common/sidebar.jsp"/>
         <section class="col-9 w-75 ">
             <jsp:include page="../common/navbar.jsp"/>
-            <h3>Les livres</h3>
-            <button class="btn btn-primary p-1 btnright m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Ajouter un livre
-            </button>
-            <%
-                if (request.getAttribute("success") != null)
-                {
-            %>
-            <div class="alert alert-success p-2">
-                <%= request.getAttribute("success") %>
+            <h2 class="d-flex justify-content-center text-center text-primary fw-bolder">BibTek</h2>
+            <div class="row">
+                <div class="col card shadow p-4 align-content-center text-center m-3">
+                    <i class="fa fa-book text fa-4x" ></i>
+                </div>
+                <div class="col card shadow p-4 align-content-center text-center m-3">
+                    <i class="fa fa-users fa-4x" ></i>
+                </div>
+                <div class="col card shadow p-4 align-content-center text-center m-3">
+                    <i class="fas fa-book-open fa-4x" ></i>
+                </div>
+                <div class="col card shadow p-4 align-content-center text-center m-3">
+                    <i class="fa fa-list-alt fa-4x" ></i>
+                </div>
             </div>
-            <%
-                }
-            %>
-            <table class="table w-100" id="livres_table">
-                <thead class="table-dark">
-                    <tr class="text-center">
-                        <td>id</td>
-                        <td>Nom</td>
-                        <td>Sidi</td>
-                        <td>Actions</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <h2>les choses se passent de la meilleure facon</h2>
-                    <% if (request.getAttribute("livres") != null) { %>
-                        <% List<Livre> livres = (List) request.getAttribute("livres"); %>
-                            <% for (Livre l : livres) { %>
-                                <tr class="text-center">
-                                    <td id="lib"><%= l.getLibelle() %></td>
-                                    <td id="cout"><%= l.getCout() %></td>
-                                    <td id="auteur" ><%= l.getAuteur().getNom() %></td>
-                                    <td>
-                                        <button class="btn btn-dark" >voir</button>
-                                        <button class="btn btn-danger">Supprimer</button>
-                                    </td>
-                                </tr>
-                            <% } %>
-                        <% } %>
-                </tbody>
-            </table>
+            <div class="row">
+                <p class="text-body p-3 shadow text-center">
+                    <span class="text-primary fw-bold">BibTek</span>
+                    permet de d'effectuer les différentes opérations d'une bibliothéques notamment<b> l'enregistrement</b> d'un livre,<b>la modification</b>,<b>la supression</b> et la visualisation.
+                    Pareil pour l'auteur ainsi établir l'opération <b>d'emprunt</b>  entre le client et le livre
+                </p>
+            </div>
         </section>
     </div>
+
 
 <!-- Modal Add-->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

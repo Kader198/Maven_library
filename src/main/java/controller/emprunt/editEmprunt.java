@@ -28,7 +28,11 @@ public class editEmprunt extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         Emprunt emprunt = empruntService.getEmprunt(id);
+        List<Client> clients = clientService.getAllClient();
+        List<Livre> livres = livreService.getAllLivre();
         req.setAttribute("emprunt",emprunt);
+        req.setAttribute("clients",clients);
+        req.setAttribute("livres",livres);
         req.setAttribute("emprunts",empruntService.getAllEmprunt());
         req.getRequestDispatcher("views/emprunt/edit.jsp").forward(req,resp);
     }
@@ -55,6 +59,7 @@ public class editEmprunt extends HttpServlet {
         updatedEmprunt.setQte(qte);
         empruntService.addEmprunt(updatedEmprunt);
         System.out.println("Emprunt ajouté");
+        req.removeAttribute("success");
         req.setAttribute("success","l'emprunt a été bien modifié ");
         List<Emprunt> emprunts = empruntService.getAllEmprunt();
         req.setAttribute("emprunts",emprunts);
